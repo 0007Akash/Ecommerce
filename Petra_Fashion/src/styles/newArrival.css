@@ -1,0 +1,114 @@
+.main-card-div {
+  height: auto;
+  background-color: red;
+  margin: 40px 0;
+  padding: 5px 0;
+  background: linear-gradient(
+    to bottom right,
+    rgb(207, 226, 234) 10%,
+    white 50%
+  );
+}
+.main-card-div > div h1 {
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 16px;
+  color: black;
+  font-weight: 500;
+}
+.card-div {
+  width: 100%;
+  margin-top: 20px;
+  /* margin-left: 40px; */
+}
+.card {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  width: 100% !important;
+}
+.card_in {
+  border: 1px solid rgb(205, 200, 200) !important;
+}
+.card_in image:hover {
+  transform: scale(0.2);
+}
+
+.content {
+  overflow: hidden;
+  padding: 10px 10px 15px !important;
+}
+.content .title {
+  font-size: 12px;
+  font-weight: 700;
+  font-family: Montserrat;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.content .title .fav {
+  font-size: 20px;
+  color: rgb(87, 85, 85);
+}
+.content .desc {
+  font-size: 10px;
+  white-space: nowrap;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.content .price {
+  display: flex;
+  gap: 5px;
+  margin-top: 8px;
+  align-items: center;
+}
+.content .price > div:first-child {
+  font-size: 16px;
+  font-weight: 600;
+}
+.content .price > div:nth-child(2) {
+  font-size: 12px;
+  text-decoration: line-through;
+  color: rgb(155, 152, 152);
+}
+.content .price > div:nth-child(3) {
+  font-size: 12px;
+  color: green;
+  font-weight: 500;
+  margin: 0;
+}
+.main-card-div div:last-child {
+  text-align: center;
+  margin-bottom: 10px;
+}
+.main-card-div div:last-child a {
+  color: #469f9c;
+  font-size: 24px;
+  font-weight: 700;
+}
+.slick-prev,
+.slick-next {
+  background-color: transparent !important;
+  border-radius: 50% !important;
+  width: 40px !important;
+  height: 40px !important ;
+  z-index: 1 !important;
+}
+.slick-prev {
+  left: 5px !important;
+}
+.slick-next {
+  right: 5px !important;
+}
+
+/* .slick-prev:hover,
+  .slick-next:hover {
+    background-color: rgb(199, 191, 191) !important;
+  } */
+
+.slick-prev:before,
+.slick-next:before {
+  color: white !important;
+  font-size: 25px !important;
+}

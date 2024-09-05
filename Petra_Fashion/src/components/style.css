@@ -1,0 +1,109 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.navSearch {
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+.navSearch .fav {
+  font-weight: lighter;
+  transform: scale(0.9);
+  opacity: 0.7;
+}
+
+.navSearch .cartIcon {
+  font-weight: lighter;
+  transform: scale(0.9);
+  opacity: 0.7;
+}
+.loginBtn a {
+  text-decoration: none;
+  color: black;
+}
+.navDownLink {
+  width: auto;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.navDownLink ul {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
+  align-items: center;
+  overflow-x: scroll;
+  padding: 0 30px;
+}
+.navDownLink ul li {
+  list-style-type: none;
+  text-transform: uppercase;
+  width: 100%;
+  padding: 21px 24px;
+  font-size: 17px;
+  flex-grow: 1;
+  white-space: nowrap;
+}
+
+.navDownLink ul::-webkit-scrollbar {
+  display: none;
+}
+
+/* Target the slick dots container */
+/* .slick-dots {
+  bottom: 15px !important;
+} */
+
+.slick-dots li {
+  margin: 0 0 !important;
+}
+
+/* Target each dot */
+.slick-dots li button::before {
+  color: grey !important;
+  font-size: 6px !important;
+  opacity: 0.4 !important;
+  transition: font-size 0.3s ease, color 0.3s ease, opacity 0.3s ease !important;
+}
+
+/* Optional: Change active dot color */
+.slick-dots li.slick-active button::before {
+  color: blue !important;
+}
+.slick-dots .slick-active button::before {
+  font-size: 12px !important;
+  color: blue !important;
+  opacity: 1 !important;
+  transition: font-size 0.3s ease, color 0.3s ease, opacity 0.3s ease !important;
+}
+
+.slick-prev,
+.slick-next {
+  background-color: transparent !important;
+  border-radius: 50% !important;
+  width: 40px !important;
+  height: 40px !important ;
+  z-index: 1 !important;
+}
+.slick-prev {
+  left: 5px !important;
+}
+.slick-next {
+  right: 5px !important;
+}
+
+/* .slick-prev:hover,
+.slick-next:hover {
+  background-color: rgb(199, 191, 191) !important;
+} */
+
+.slick-prev:before,
+.slick-next:before {
+  color: white !important;
+  font-size: 25px !important;
+}
