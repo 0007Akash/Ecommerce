@@ -97,7 +97,7 @@ server.get("/get-products", async (req, res) => {
     }
 
     // Fetch products with pagination, sorting, and limit
-    const limitValue = parseInt(limit) || 10; // Default limit to 10
+    const limitValue = parseInt(limit) || 100; // Default limit to 10
     const skipValue = (parseInt(page) - 1) * limitValue; // Pagination skip value
 
     // Sort by the provided field and order
@@ -127,6 +127,29 @@ server.get("/get-products", async (req, res) => {
       message: "Failed to fetch products",
       error: error.message,
     });
+  }
+});
+
+server.get("/get-product/:id", async (req, res) => {
+  try {
+    const { id } = req.params; // Extract the id from the URL
+
+    // Fetch the product by ID from the database
+    const product = await Product.findById(id);
+
+    // If the product is not found, return a 404 status
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+
+    // Send the product data
+    res.status(200).json(product);
+  } catch (error) {
+    // Handle errors (like invalid ID format or other database issues)
+    console.error("Error fetching product by ID:", error);
+    res
+      .status(500)
+      .json({ message: "Failed to fetch product", error: error.message });
   }
 });
 
