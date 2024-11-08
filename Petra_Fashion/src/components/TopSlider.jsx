@@ -4,15 +4,27 @@ import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import './style.css'
+import { useContext } from 'react'
+import { EcomContext } from '../context/EcomContext'
+
+
 const TopSlider = () => {
 
-    const [banners, setBanners] = useState([]);
+
+
+    const { banners } = useContext(EcomContext);
+    // State to hold an array of banners
+    const [banner, setBanner] = useState([]);
+
+
+
 
     useEffect(() => {
-        axios.get('http://localhost:3001/get-banner?section=top')
-            .then(response => setBanners(response.data.banners))
-            .catch(error => console.error('Error fetching slides:', error));
-    }, []);
+        const bannerCopy = banners.filter(item => item.section === "top");
+
+        setBanner(bannerCopy);
+
+    }, [banners]);
 
     const settings = {
         dots: true,
@@ -48,8 +60,8 @@ const TopSlider = () => {
     };
     return (
         <Slider {...settings}>
-            {banners.map(banner => (
-                <div key={banner._id} className='relative sm:h-[280px] md:h-[370px] lg:h-[512px]'>
+            {banner.map(banner => (
+                <div key={banner._id} className='relative sm:h-[280px] md:h-[370px] lg:h-[512px] outline-none border-none'>
                     <img className='p-2 sm:p-0 sm:h-[280px] md:h-[370px] lg:h-[512px]' src={banner.imgUrl} alt="Slider" style={{ width: '100%' }} />
                 </div>
             ))}

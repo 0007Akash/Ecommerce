@@ -59,6 +59,7 @@ const Footer = () => {
                         <img src="https://via.placeholder.com/50x30?text=PayPal" alt="PayPal" />
                         <img src="https://via.placeholder.com/50x30?text=Amex" alt="American Express" />
                     </div>
+
                 </div>
             </div>
         </footer>

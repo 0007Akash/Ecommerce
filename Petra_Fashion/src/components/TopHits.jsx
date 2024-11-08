@@ -4,15 +4,27 @@ import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import './style.css'
-const TopHits = () => {
+import { useContext } from 'react'
+import { EcomContext } from '../context/EcomContext'
 
-    const [banners, setBanners] = useState([]);
+const TopHits = () => {
+    const { banners } = useContext(EcomContext);
+    // State to hold an array of banners
+    const [banner, setBanner] = useState([]);
+
+
+
 
     useEffect(() => {
-        axios.get('http://localhost:3001/get-banner?section=tophits')
-            .then(response => setBanners(response.data.banners))
-            .catch(error => console.error('Error fetching slides:', error));
-    }, []);
+        const bannerCopy = banners.filter(item => item.section === "tophits");
+
+        setBanner(bannerCopy);
+
+    }, [banners]);
+
+    if (!banner.length) {
+        return <div></div>;
+    }
 
     const settings = {
         dots: true,
@@ -46,20 +58,27 @@ const TopHits = () => {
             }
         ]
     };
+
+    // Do not render anything if still loading
+
+
     return (
         <>
+            {/* Title only shows when data is fetched */}
             <div className='w-full flex items-center justify-center font-semibold text-[20px] tracking-wider'>
                 <h1>Bewakoof's Top Hits</h1>
             </div>
+
+            {/* Render the slider */}
             <Slider {...settings}>
-                {banners.map(banner => (
-                    <div key={banner._id} className='relative sm:h-[280px] md:h-[370px] lg:h-[512px]'>
+                {banner.map(banner => (
+                    <div key={banner._id} className='relative sm:h-[280px] md:h-[370px] lg:h-[512px] border-none outline-none'>
                         <img className='p-2 sm:p-0 sm:h-[280px] md:h-[370px] lg:h-[512px]' src={banner.imgUrl} alt="Slider" style={{ width: '100%' }} />
                     </div>
                 ))}
             </Slider>
         </>
-    )
+    );
 }
 
-export default TopHits
+export default TopHits;

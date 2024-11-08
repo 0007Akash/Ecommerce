@@ -2,30 +2,34 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { CiHeart } from "react-icons/ci";
 import { Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { useContext } from 'react';
+import { EcomContext } from '../context/EcomContext';
 
-const CargoPants = () => {
-    const [products, setProducts] = useState([]);
+const ProductPage = () => {
+    const [data, setData] = useState([]);
+    const { sectionName } = useParams();
 
+    const { products } = useContext(EcomContext);
     // Fetch product data from the API
     useEffect(() => {
-        axios.get('https://ecommerce-jht1.onrender.com/get-products?section=Cargo') // Replace with your API endpoint
-            .then(response => {
-                setProducts(response.data.products); // Adjust according to your API response structure
-            })
-            .catch(error => console.error('Error fetching products:', error));
-    }, []);
+        const filteredData = products.filter(item => item.section === `${sectionName}`);
 
-    if (!Array.isArray(products) || products.length === 0) {
-        return <div className='full flex justify-center items-center'>
-            <img className='w-[200px] h-auto' src="https://media1.giphy.com/media/wvtt4mtViPOSrLYNFh/giphy.webp?cid=790b7611nn9y7ld9r3ktplz8857bwwj4hv1aw8vri7sjj09n&ep=v1_gifs_search&rid=giphy.webp&ct=g" alt="" />
-        </div>;
+        setData(filteredData);
+
+    }, [products]);
+    // console.log("Section Name", sectionName);
+    if (!data.length) {
+        return <div></div>;
     }
+
+
     return (
         <div className="container mx-auto p-4">
-            <h1 className="text-2xl font-bold mb-4">Cargo Pants</h1>
+            <h1 className="text-2xl font-bold mb-4 capitalize">{sectionName} Products</h1>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                {products.map(product => (
-                    <Link to={`/${product._id}`} key={product._id}>
+                {data.map(product => (
+                    <Link to={`/${sectionName}/${product._id}`} key={product._id}>
                         <div key={product._id} className="border rounded-lg overflow-hidden shadow-lg bg-white">
                             <img src={product.imgUrl} alt={product.title} className="w-full h-345 object-cover" />
                             <div className='w-full pt-2'>
@@ -54,4 +58,4 @@ const CargoPants = () => {
     );
 };
 
-export default CargoPants;
+export default ProductPage;

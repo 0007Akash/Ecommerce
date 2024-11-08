@@ -8,13 +8,17 @@ import './style.css'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import { Link } from 'react-router-dom';
+import { EcomContext } from '../context/EcomContext';
+import { useContext } from 'react';
+import zIndex from '@mui/material/styles/zIndex';
 
 
 function MainNav() {
+    const { getCartCount } = useContext(EcomContext);
 
     return (
         <>
-            <Box sx={{ width: '100%', height: '61px', backgroundColor: 'white' }}>
+            <Box sx={{ width: '100%', height: '61px', backgroundColor: 'white', position: 'sticky', top: '-1px', zIndex: '50' }}>
                 <Container maxWidth="lg" sx={{ height: '61px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                     <Box sx={{ height: '61px', display: 'flex', alignItems: 'center' }}>
                         <Box sx={{ width: '150px', height: '100%', display: 'flex', alignItems: 'center' }}>
@@ -61,9 +65,12 @@ function MainNav() {
                         <Box>
                             <FavoriteBorderIcon className='fav' />
                         </Box>
-                        <Box>
-                            <ShoppingBagOutlinedIcon className='cartIcon' />
-                        </Box>
+                        <Link to={"/Cart"}>
+                            <Box className='relative'>
+                                <ShoppingBagOutlinedIcon className='cartIcon' />
+                                <p className='absolute bottom-0 right-0 text-[8px] font-bold text-white bg-gray-700 px-[2px] rounded-full'>{getCartCount()}</p>
+                            </Box>
+                        </Link>
                     </Box>
                 </Container>
             </Box>
